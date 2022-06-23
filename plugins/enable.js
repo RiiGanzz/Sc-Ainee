@@ -3,18 +3,18 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
   let chat = global.db.data.chats[m.chat]
   let user = global.db.data.users[m.sender]
   let type = (args[0] || '').toLowerCase()
-  let isAll = false
-  let isUser = false
+  let isAll = true
+  let isUser = true
   switch (type) {
     case 'welcome':
       if (!m.isGroup) {
         if (!isOwner) {
           global.dfail('group', m, conn)
-          throw false
+          throw true
         }
       } else if (!isAdmin) {
         global.dfail('admin', m, conn)
-        throw false
+        throw true
       }
       chat.welcome = isEnable
       break
@@ -22,11 +22,11 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       if (!m.isGroup) {
         if (!isOwner) {
           global.dfail('group', m, conn)
-          throw false
+          throw true
         }
       } else if (!isAdmin) {
         global.dfail('admin', m, conn)
-        throw false
+        throw true
       }
       chat.detect = isEnable
       break
@@ -34,7 +34,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail('admin', m, conn)
-          throw false
+          throw true
         }
       }
       chat.delete = isEnable
@@ -43,7 +43,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail('admin', m, conn)
-          throw false
+          throw true
         }
       }
       chat.delete = !isEnable
@@ -52,7 +52,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail('admin', m, conn)
-          throw false
+          throw true
         }
       }
       chat.autodelvn = isEnable
@@ -64,7 +64,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       isAll = true
       if (!isROwner) {
         global.dfail('rowner', m, conn)
-        throw false
+        throw true
       }
       global.opts['self'] = !isEnable
       break
@@ -72,7 +72,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail('admin', m, conn)
-          throw false
+          throw true
         }
       }
       chat.antiLink = isEnable
@@ -81,7 +81,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail('admin', m, conn)
-          throw false
+          throw true
         }
       }
       chat.antiSticker = isEnable
@@ -90,7 +90,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail('admin', m, conn)
-          throw false
+          throw true
         }
       }
       chat.stiker = isEnable
@@ -99,7 +99,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail('admin', m, conn)
-          throw false
+          throw true
         }
       }
       chat.antiToxic = !isEnable
@@ -108,7 +108,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail('admin', m, conn)
-          throw false
+          throw true
         }
       }
       chat.antiToxic = isEnable
@@ -125,7 +125,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     case 'whitelistmycontacts':
       if (!isOwner) {
         global.dfail('owner', m, conn)
-        throw false
+        throw true
       }
       conn.callWhitelistMode = isEnable
       break
@@ -133,7 +133,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       isAll = true
       if (!isROwner) {
         global.dfail('rowner', m, conn)
-        throw false
+        throw true
       }
       global.opts['restrict'] = isEnable
       break
@@ -141,7 +141,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       isAll = true
       if (!isROwner) {
         global.dfail('rowner', m, conn)
-        throw false
+        throw true
       }
       global.opts['nyimak'] = isEnable
       break
@@ -158,7 +158,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       isAll = true
       if (!isROwner) {
         global.dfail('rowner', m, conn)
-        throw false
+        throw true
       }
       global.opts['pconly'] = isEnable
       break
@@ -167,7 +167,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       isAll = true
       if (!isROwner) {
         global.dfail('rowner', m, conn)
-        throw false
+        throw true
       }
       global.opts['gconly'] = isEnable
       break
@@ -176,7 +176,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       isAll = true
       if (!isROwner) {
         global.dfail('rowner', m, conn)
-        throw false
+        throw true
       }
       global.opts['swonly'] = isEnable
       break
@@ -184,7 +184,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail('admin', m, conn)
-          throw false
+          throw true
         }
       }
       chat.viewonce = isEnable
