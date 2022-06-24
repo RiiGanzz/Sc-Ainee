@@ -9,7 +9,7 @@ global.owner = [
 ] // Put your number here
 global.mods = [6281247822525] // Want some help?
 global.prems = [6281247822525] // Premium user has unlimited limit
-global.APIs = { // API Prefix
+global.APIs = { https://github.com/RiiGanzz/API-RII // API Prefix
   // name: 'https://website'
   nrtm: 'https://nurutomo.herokuapp.com',
   xteam: 'https://api.xteam.xyz',
